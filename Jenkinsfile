@@ -3,10 +3,11 @@ pipeline {
     agent any
 
     stages {
-        stage("test") {
+        stage("build node project") {
             steps {
-                echo "Hello Jenkins"
-            }
+                nodejs('Node-17.6.0') {
+                    sh 'npm install'
+                }
         }
     }
 }
