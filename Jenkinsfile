@@ -8,6 +8,7 @@ pipeline {
                 nodejs('Node-17.6.0') {
                     sh 'npm install'
                 }
+            }
         }
     }
 }
