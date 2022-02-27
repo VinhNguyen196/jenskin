@@ -4,13 +4,15 @@ pipeline {
 
     stages {
         stage("build node project") {
-            steps("Install npm package") {
+            steps {
                 nodejs('Node-17.6.0') {
                     sh 'npm install'
                 }
             }
-            steps("login github") {
-                withCredentials([usernameColonPassword(credentialsId: 'docker-hub', variable: 'DOCKER-HUB-CERT')]) {
+        }
+        stage("login github") {
+            steps {
+               withCredentials([usernameColonPassword(credentialsId: 'docker-hub', variable: 'DOCKER-HUB-CERT')]) {
                     sh 'echo ${DOCKER-HUB-CERT.username}'
                 }
             }
