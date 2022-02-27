@@ -12,8 +12,8 @@ pipeline {
         }
         stage("login github") {
             steps {
-               withCredentials([usernameColonPassword(credentialsId: 'docker-hub', variable: 'DOCKER-HUB-CERT')]) {
-                    sh 'echo $DOCKER-HUB-CERT'
+               withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user ')]) {
+                    sh "docker login -u ${user} -p ${pass}"
                 }
             }
         }
