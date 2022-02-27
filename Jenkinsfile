@@ -12,7 +12,6 @@ pipeline {
         }
         stage("build docker image") {
             steps {
-               sh "cd /home/app"
                sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
             }
         }
