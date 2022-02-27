@@ -1,6 +1,8 @@
 pipeline {
     
-    agent any
+    agent {
+        label 'dockerAgent'
+    }
 
     stages {
         stage("build node project") {
@@ -10,15 +12,7 @@ pipeline {
                 }
             }
         }
-        stage("init docker") {
-           steps {
-                sh "dockerd"
-                script {
-                    def dockerHome = tool 'docker-server'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-           }
-        }
+       
         stage("build docker image") {
             steps {
                sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
