@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage("build node project") {
             steps {
@@ -11,7 +11,6 @@ pipeline {
         }
         stage("init docker") {
            steps {
-                sh "dockerd"
                 script {
                     def dockerHome = tool 'docker-server'
                     dockerHome.image('tomcat')
