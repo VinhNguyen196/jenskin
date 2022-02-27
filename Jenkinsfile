@@ -10,6 +10,10 @@ pipeline {
                 }
             }
         }
+        stage("init docker") {
+            def dockerHome = tool 'docker-server'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
         stage("build docker image") {
             steps {
                sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
@@ -24,7 +28,6 @@ pipeline {
         }
         stage("docker push") {
             steps {
-               sh "cd /home/app"
                sh "docker push vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
             }
         }
