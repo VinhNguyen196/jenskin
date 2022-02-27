@@ -12,6 +12,7 @@ pipeline {
         }
         stage("init docker") {
            steps {
+                sh "sudo dockerd"
                 script {
                     def dockerHome = tool 'docker-server'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
