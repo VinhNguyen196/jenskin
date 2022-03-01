@@ -51,7 +51,7 @@ pipeline {
         }
         stage("docker push") {
             steps {
-               sh "docker push vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
+               sh "docker push -a vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
             }
         }
     }
