@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         nodejs "NodePlugin"
+        docker "DockerPlugin"
     }
     
     stages {
@@ -15,7 +16,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        // stage("init docker") {
+        stage("init docker") {
         //    steps {
         //         script {
         //             def dockerHome = tool 'docker-server'
@@ -24,7 +25,10 @@ pipeline {
         //             env.PATH = "${dockerHome}/bin:${env.PATH}"
         //         }
         //    }
-        // }
+            steps {
+                sh 'docker --version'
+            }
+        }
         // stage("build docker image") {
         //     steps {
         //        sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
