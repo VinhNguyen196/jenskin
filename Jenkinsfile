@@ -6,9 +6,22 @@ pipeline {
     }
     
     stages {
-        stage("Login with user role") {
-            steps {
-                sh 'sudo su jenkins';
+        // stage("Login with user role") {
+        //     steps {
+        //         sh 'sudo su jenkins';
+        //     }
+        // }
+        stage('test'){
+            steps{
+                script{
+                        def image = docker.image('mhart/alpine-node:8.11.3')
+                        image.pull()
+                        image.inside() {
+                            sh 'id'
+                            sh 'ls -lrt'
+                            sh 'node yarn install'
+                        }
+                }
             }
         }
         stage("build node project") {
