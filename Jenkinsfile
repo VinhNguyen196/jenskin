@@ -6,6 +6,11 @@ pipeline {
     }
     
     stages {
+        stage("Login with user role") {
+            steps {
+                sh 'sudo su jenkins';
+            }
+        }
         stage("build node project") {
             // steps {
             //     nodejs('Node-17.6.0') {
@@ -27,6 +32,7 @@ pipeline {
         //    }
             steps {
                 sh 'docker --version'
+                sh 'sudo chmod 666 /var/run/docker.sock'
             }
         }
         stage("build docker image") {
