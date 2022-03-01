@@ -13,7 +13,7 @@ pipeline {
         //     }
         // }
        
-        stage("build node project") {
+        stage("Npm install") {
             // steps {
             //     nodejs('Node-17.6.0') {
             //         sh 'npm install'
@@ -23,7 +23,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage("init docker") {
+        stage("Init docker") {
         //    steps {
         //         script {
         //             def dockerHome = tool 'docker-server'
@@ -37,21 +37,21 @@ pipeline {
                 //sh 'sudo chmod 666 /var/run/docker.sock'
             }
         }
-        stage("build docker image") {
+        stage("Build image") {
             steps {
                sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
             }
         }
-        stage("login github") {
+        stage("Login dockerhub") {
             steps {
                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     sh "docker login -u $user -p $pass"
                 }
             }
         }
-        stage("docker push") {
+        stage("Push Image") {
             steps {
-               sh "docker push -a vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
+               sh "docker push vinhnquoc/jenkins:test-demo-$BUILD_NUMBER"
             }
         }
     }
