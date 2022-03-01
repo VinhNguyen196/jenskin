@@ -6,12 +6,12 @@ pipeline {
     }
     
     stages {
-        stage("Login with user role") {
-            steps {
-                sh 'touch /home/password.sh >> docker'
-                sh 'sudo -u docker /home/password.sh'
-            }
-        }
+        // stage("Login with user role") {
+        //     steps {
+        //         sh 'touch /home/password.sh >> docker'
+        //         sh 'sudo -u docker /home/password.sh'
+        //     }
+        // }
        
         stage("build node project") {
             // steps {
@@ -34,7 +34,7 @@ pipeline {
         //    }
             steps {
                 sh 'docker --version'
-                sh 'sudo chmod 666 /var/run/docker.sock'
+                //sh 'sudo chmod 666 /var/run/docker.sock'
             }
         }
         stage("build docker image") {
