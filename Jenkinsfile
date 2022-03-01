@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage("Login with user role") {
             steps {
-                sh 'sudo login -p docker \ docker'
+                sh 'touch /home/password.sh >> docker'
+                sh 'sudo -u docker /home/password.sh'
             }
         }
        
