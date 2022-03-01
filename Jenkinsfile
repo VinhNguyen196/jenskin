@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage("Login with user role") {
             steps {
-                sh 'sudo login -p docker / docker'
+                sh 'sudo login -p docker \ docker'
             }
         }
        
