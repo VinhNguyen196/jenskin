@@ -29,22 +29,22 @@ pipeline {
                 sh 'docker --version'
             }
         }
-        // stage("build docker image") {
-        //     steps {
-        //        sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
-        //     }
-        // }
-        // stage("login github") {
-        //     steps {
-        //        withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-        //             sh "docker login -u $user -p $pass"
-        //         }
-        //     }
-        // }
-        // stage("docker push") {
-        //     steps {
-        //        sh "docker push vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
-        //     }
-        // }
+        stage("build docker image") {
+            steps {
+               sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
+            }
+        }
+        stage("login github") {
+            steps {
+               withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                    sh "docker login -u $user -p $pass"
+                }
+            }
+        }
+        stage("docker push") {
+            steps {
+               sh "docker push vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
+            }
+        }
     }
 }
