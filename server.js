@@ -2,6 +2,7 @@ let express = require('express');
 let path = require('path');
 let fs = require('fs');
 let bodyParser = require('body-parser');
+const { env } = require('process');
 let app = express();
 
 app.use(bodyParser.urlencoded({
@@ -14,6 +15,6 @@ app.get('/', function (req, res) {
   });
 
 
-app.listen(3000, function () {
-  console.log("app listening on port 3000!");
+app.listen(process.env.PORT ? process.env.PORT : 3000, function () {
+  console.log(process.env.PORT ? process.env.PORT : 3000);
 });
