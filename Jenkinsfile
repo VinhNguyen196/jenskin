@@ -6,11 +6,13 @@ pipeline {
     }
     
     stages {
-        // stage("Login with user role") {
-        //     steps {
-        //         sh 'chown -R 1001 /docker';
-        //     }
-        // }
+        stage("Login with user role") {
+            steps {
+                sh 'sudo login'
+                sh 'docker'
+                sh 'docker'
+            }
+        }
        
         stage("build node project") {
             // steps {
