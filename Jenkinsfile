@@ -3,7 +3,7 @@ pipeline {
     tools {
         nodejs "NodePlugin"
         dockerTool "DockerPlugin"
-        sonarTool "sq1"
+        hudson.plugins.sonar.SonarRunnerInstallation "sq1"
     }
     
     stages {
