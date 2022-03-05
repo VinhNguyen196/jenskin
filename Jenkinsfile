@@ -16,12 +16,12 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    println scannerHome
+                    withSonarQubeEnv(installationName: 'sq1') {
+                        sh 'echo ${scannerHome}'
+                        sh '${scannerHome}/bin/sonar-scanner'
+                    }
                 }
-                withSonarQubeEnv(installationName: 'sq1') {
-                    sh 'echo ${scannerHome}'
-                    sh '${scannerHome}/bin/sonar-scanner'
-                }
+               
             }
         }
         // stage("Quality Gate") {
