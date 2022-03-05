@@ -13,11 +13,14 @@ pipeline {
         //     }
         // }
         stage("SonarQube check") {
-            script {
+            steps {
+                script {
                 def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-            }
-            withSonarQubeEnv(installationName: 'sq1') {
-                sh '${scannerHome}/bin/sonar-scanner'
+                }
+                withSonarQubeEnv(installationName: 'sq1') {
+                    sh 'echo ${scannerHome}'
+                    sh '${scannerHome}/bin/sonar-scanner'
+                }
             }
         }
         // stage("Quality Gate") {
