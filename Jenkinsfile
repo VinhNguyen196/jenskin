@@ -4,7 +4,6 @@ pipeline {
         nodejs "NodePlugin"
         dockerTool "DockerPlugin"
     }
-    
     stages {
         // stage("Login with user role") {
         //     steps {
@@ -16,11 +15,11 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv(installationName: 'sq1') {
-                        sh 'echo ${scannerHome}'
-                        sh '${scannerHome}/bin/sonar-scanner'
-                    }
                 }
+                withSonarQubeEnv(installationName: 'sq1') {
+                        sh 'echo '
+                        sh '${ENV.scannerHome}/bin/sonar-scanner'
+                    }
                
             }
         }
