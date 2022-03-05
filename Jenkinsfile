@@ -3,6 +3,7 @@ pipeline {
     tools {
         nodejs "NodePlugin"
         dockerTool "DockerPlugin"
+        sonarTool "sq1"
     }
     
     stages {
@@ -12,7 +13,22 @@ pipeline {
         //         sh 'sudo -u docker /home/password.sh'
         //     }
         // }
-       
+        stage("SonarQube check") {
+            steps {
+                withSonarQubeEnv(installationName: 'sq1') {
+                    
+                }
+            }
+        }
+        // stage("Quality Gate") {
+        //     steps {
+        //         timeout(time: 1, unit: 'HOURS') {
+        //             // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+        //             // true = set pipeline to UNSTABLE, false = don't
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
         stage("Npm install") {
             // steps {
             //     nodejs('Node-17.6.0') {
