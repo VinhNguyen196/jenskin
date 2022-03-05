@@ -15,6 +15,7 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    println $scannerHome
                     sh 'cd ${scannerHome}/bin'
                     sh 'ls'
                 }
