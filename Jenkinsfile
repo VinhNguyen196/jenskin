@@ -1,8 +1,8 @@
 pipeline {
     agent any
     tools {
-        nodejs "NodePlugin"
-        dockerTool "DockerPlugin"
+        nodejs "node"
+        dockerTool "docker"
     }
     stages {
         // stage("Login with user role") {
@@ -14,9 +14,9 @@ pipeline {
         stage("SonarQube check") {
             steps {
                 script {
-                    def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv(installationName: 'sq1') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Demo-Jenkins"
+                    def scannerHome = tool name: 'sonarqube_server', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv(installationName: 'sonar') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=NodeJs"
                     }
                 }
             }
@@ -54,22 +54,22 @@ pipeline {
                 //sh 'sudo chmod 666 /var/run/docker.sock'
             }
         }
-        stage("Build image") {
-            steps {
-               sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
-            }
-        }
-        stage("Login dockerhub") {
-            steps {
-               withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    sh "docker login -u $user -p $pass"
-                }
-            }
-        }
-        stage("Push Image") {
-            steps {
-               sh "docker push vinhnquoc/jenkins:test-demo-$BUILD_NUMBER"
-            }
-        }
+        // stage("Build image") {
+        //     steps {
+        //        sh "docker build -t vinhnquoc/jenkins:test-demo-$BUILD_NUMBER ."
+        //     }
+        // }
+        // stage("Login dockerhub") {
+        //     steps {
+        //        withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+        //             sh "docker login -u $user -p $pass"
+        //         }
+        //     }
+        // }
+        // stage("Push Image") {
+        //     steps {
+        //        sh "docker push vinhnquoc/jenkins:test-demo-$BUILD_NUMBER"
+        //     }
+        // }
     }
 }
