@@ -74,11 +74,11 @@ pipeline {
     }
     post {
         success {
-             emailext to: "vinhnquoc196@gmail.com" 
+             emailext
             // recipientProviders: [developers(), requestor()],
         }
         failure {
-            emailext to: "vinhnquoc196@gmail.com"
+            emailext
             // recipientProviders: [developers(), requestor()],
         }
     }
