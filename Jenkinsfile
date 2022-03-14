@@ -74,15 +74,13 @@ pipeline {
     }
     post {
         success {
-             emailext body: "Build success",
+             emailext
             // recipientProviders: [developers(), requestor()],
-                subject: "Jenkins pipelines",
                 to: "vinhnquoc196@gmail.com"
         }
         failure {
-            emailext body: "Build failure",
+            emailext
             // recipientProviders: [developers(), requestor()],
-                subject: "Jenkins pipelines",
                 to: "vinhnquoc196@gmail.com"
         }
     }
