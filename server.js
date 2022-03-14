@@ -17,4 +17,5 @@ app.get('/', function (req, res) {
 
 app.listen(process.env.PORT ? process.env.PORT : 3000, function () {
   console.log(process.env.PORT ? process.env.PORT : 3000);
+  console.log("test");
 });
