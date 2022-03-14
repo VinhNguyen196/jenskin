@@ -72,18 +72,18 @@ pipeline {
         //     }
         // }
     }
-    // post {
-    //     success {
-    //          emailtext body: "Build success",
-    //         // recipientProviders: [developers(), requestor()],
-    //             subject: "Jenkins pipelines",
-    //             to: "vinhnquoc196@gmail.com"
-    //     }
-    //     failure {
-    //         emailtext body: "Build failure",
-    //         // recipientProviders: [developers(), requestor()],
-    //             subject: "Jenkins pipelines",
-    //             to: "vinhnquoc196@gmail.com"
-    //     }
-    // }
+    post {
+        success {
+             emailext body: "Build success",
+            // recipientProviders: [developers(), requestor()],
+                subject: "Jenkins pipelines",
+                to: "vinhnquoc196@gmail.com"
+        }
+        failure {
+            emailext body: "Build failure",
+            // recipientProviders: [developers(), requestor()],
+                subject: "Jenkins pipelines",
+                to: "vinhnquoc196@gmail.com"
+        }
+    }
 }
